@@ -13,5 +13,5 @@ Start the development server (changes will now update live in browser)
 
 Run an initial webpack build
 ```
-> npm run buld
+> npm run build
 ```
