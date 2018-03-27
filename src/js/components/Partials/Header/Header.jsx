@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 import MainMenu from './MainMenu'
 
+import Logo from '../../../../../assets/images/logo.jpg'
+
 class Header extends Component {
     constructor(props) {
         super(props)
@@ -14,7 +16,9 @@ class Header extends Component {
             <header id="main-header">
                 <div className="container">
                     <nav className="navbar navbar-light bg-light">
-                        <Link to="/" className="navbar-brand">Logo</Link>
+                        <Link to="/" className="navbar-brand">
+                            <img src={ Logo } />
+                        </Link>
                         <MainMenu />
                     </nav>
                 </div>

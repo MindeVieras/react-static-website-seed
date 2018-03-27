@@ -7,7 +7,7 @@ module.exports = {
     devServer: {
         inline: true,
         historyApiFallback: true,
-        contentBase: './dist',
+        contentBase: './src',
         port: 8080
     },
     devtool: 'eval-source-map',
@@ -49,6 +49,15 @@ module.exports = {
                     loader: "css-loader"
                 }, {
                     loader: "sass-loader"
+                }]
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[path][name].[ext]'
+                    }  
                 }]
             }
         ]

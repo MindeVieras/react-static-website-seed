@@ -4,6 +4,6 @@
 *.map
 *.log
 
-dist/app.min.js
+/dist
 
 node_modules
