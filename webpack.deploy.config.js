@@ -1,16 +1,11 @@
 
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var S3Plugin = require('webpack-s3-plugin');
 
 module.exports = {
-    mode: 'development',
-    devServer: {
-        inline: true,
-        historyApiFallback: true,
-        contentBase: './src',
-        port: 8080
-    },
-    devtool: 'eval-source-map',
+    mode: 'production',
     entry: './src/js/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -65,5 +60,24 @@ module.exports = {
                 }]
             }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            inject: false,
+            minify: {
+                collapseWhitespace: true
+            }
+        }),
+        new S3Plugin({
+            s3Options: {
+                region: 'eu-west-1',
+                accessKeyId: 'AKIAJ5ZOO4BMVSB3X7AQ',
+                secretAccessKey: '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'
+            },
+            s3UploadOptions: {
+                Bucket: 'test.mindelis.com'
+            }
+        })
+    ]
 };

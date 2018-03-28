@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import MainMenu from './MainMenu'
 
-import Logo from '../../../../../assets/images/logo.jpg'
+import Logo from 'Images/logo.jpg'
 
 class Header extends Component {
     constructor(props) {

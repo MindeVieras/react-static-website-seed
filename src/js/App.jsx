@@ -1,12 +1,8 @@
 
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import Header from './components/Partials/Header'
-import Footer from './components/Partials/Footer'
-import Home from './components/Pages/Home'
-import About from './components/Pages/About'
-import Contact from './components/Pages/Contact'
+import { Header, Footer, Home, About, Contact, Error404 } from 'Components'
 
 // Get styles from npm
 import 'bootstrap/dist/css/bootstrap.css'
@@ -27,9 +23,12 @@ class App extends Component {
                     
                     <Header />
                         <div className="container">
-                            <Route exact path="/" component={ Home } />
-                            <Route path="/about" component={ About } />
-                            <Route path="/contact" component={ Contact } />
+                            <Switch>
+                                <Route exact path="/" component={ Home } />
+                                <Route path="/about" component={ About } />
+                                <Route path="/contact" component={ Contact } />
+                                <Route component={ Error404 } />
+                            </Switch>
                         </div>
                     
                     <Footer />

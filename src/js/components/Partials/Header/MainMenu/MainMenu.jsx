@@ -1,15 +1,18 @@
 
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const MainMenu = () => {
     return (
         <ul className="nav float-right">
             <li className="nav-item">
-                <Link to="/about" className="nav-link active">About</Link>
+                <NavLink to="/about" className="nav-link">About</NavLink>
             </li>
             <li className="nav-item">
-                <Link to="/contact" className="nav-link active">Contact</Link>
+                <NavLink to="/contact" className="nav-link">Contact</NavLink>
+            </li>
+            <li className="nav-item">
+                <NavLink to="/any-url" className="nav-link">404</NavLink>
             </li>
         </ul>
     )
