@@ -3,6 +3,16 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var S3Plugin = require('webpack-s3-plugin');
+var fs = require('fs');
+
+
+var s3DeployConfig = {};
+if (fs.existsSync('./s3-deploy-config.json')) {
+    var s3DeployConfig = require('./s3-deploy-config.json');
+}
+else {
+    console.log('To start deployin app to S3 please create s3-deploy-config.json file.');
+}
 
 module.exports = {
     mode: 'production',
@@ -21,27 +31,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader'
             },
             {
-                test: /\.jsx$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
-            },
-            {
-                test: /\.css$/,
-                use: [{
-                    loader: "style-loader"
-                }, {
-                    loader: "css-loader"
-                }, {
-                    loader: "sass-loader"
-                }]
-            },
-            {
-                test: /\.scss$/,
+                test: /\.(css|scss)$/,
                 use: [{
                     loader: "style-loader"
                 }, {
@@ -71,12 +66,12 @@ module.exports = {
         }),
         new S3Plugin({
             s3Options: {
-                region: 'eu-west-1',
-                accessKeyId: 'AKIAJ5ZOO4BMVSB3X7AQ',
-                secretAccessKey: '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'
+                region: s3DeployConfig.region,
+                accessKeyId: s3DeployConfig.accessKeyId,
+                secretAccessKey: s3DeployConfig.secretAccessKey
             },
             s3UploadOptions: {
-                Bucket: 'test.mindelis.com'
+                Bucket: s3DeployConfig.bucket
             }
         })
     ]

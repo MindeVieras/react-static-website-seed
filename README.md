@@ -15,3 +15,10 @@ Run an initial webpack build
 ```
 > npm run build
 ```
+
+Deploy to S3
+```
+> npm run deploy
+```
+
+Note: before S3 deploy rename s3-deploy-config.sample.json to s3-deploy-config.json and set your AWS credentials
